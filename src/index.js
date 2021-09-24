@@ -26,11 +26,11 @@ refs.toogle.addEventListener("change", switchTheme);
 
 // ThemeSwitch
 function switchTheme() {
-    if (this.checked) {
+    if(this.checked){
         refs.body.classList.add(Theme.DARK);
-        refs.body.classList.remove(Theme.LIGHT);
-    } else {
+        refs.body.classList.remove(Theme.LIGHT); 
+    }else{
         refs.body.classList.add(Theme.LIGHT);
-        refs.body.classList.remove(Theme.DARK);
+        refs.body.classList.remove(Theme.DARK); 
     }
 }
