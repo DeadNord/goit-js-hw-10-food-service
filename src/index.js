@@ -11,6 +11,7 @@ const Theme = {
 
 const refs = {
     toogle: document.getElementById(`theme-switch-toggle`),
+    checkbox: document.querySelector(".theme-switch__control"),
     body: document.querySelector("body"),
     cards: document.querySelector(".menu"),
     card: main(menu)
@@ -20,17 +21,30 @@ const refs = {
 // Cards Insert
 refs.cards.insertAdjacentHTML("beforeend", refs.card);
 
-
-// Listener
-refs.toogle.addEventListener("change", switchTheme);
-
 // ThemeSwitch
-function switchTheme() {
-    if(this.checked){
-        refs.body.classList.add(Theme.DARK);
-        refs.body.classList.remove(Theme.LIGHT); 
-    }else{
-        refs.body.classList.add(Theme.LIGHT);
-        refs.body.classList.remove(Theme.DARK); 
-    }
+function addClass(color) {
+    refs.body.classList.add(color);
 }
+function removeValue(light, dark) {
+    refs.body.classList.toggle(light);
+    refs.body.classList.toggle(dark);
+}
+
+// ThemeSwitchStorage
+const localStorageValue = localStorage.getItem('Theme') || Theme.LIGHT;
+refs.toogle.setAttribute("checked", "false");
+refs.toogle.checked = localStorageValue === Theme.DARK;
+addClass(localStorageValue);
+
+
+refs.checkbox.addEventListener('change', e => {
+  if (e.target.nodeName!=='INPUT') {
+      return;
+  }
+    removeValue(Theme.LIGHT, Theme.DARK);
+  if (e.target.checked) {
+      localStorage.setItem('Theme', 'dark-theme');
+  }else{
+      localStorage.removeItem('Theme');
+  }
+})
