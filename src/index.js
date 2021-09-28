@@ -8,7 +8,6 @@ const Theme = {
 };
 
 // Links
-
 const refs = {
     toogle: document.getElementById(`theme-switch-toggle`),
     checkbox: document.querySelector(".theme-switch__control"),
